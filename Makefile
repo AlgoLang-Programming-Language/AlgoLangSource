@@ -12,6 +12,7 @@ SOURCES = $(SRC_DIR)/main.c \
           $(SRC_DIR)/parser/ast.c \
           $(SRC_DIR)/bytecode/compiler.c \
           $(SRC_DIR)/vm/vm.c \
+          $(SRC_DIR)/vm/globals.c \
           $(SRC_DIR)/runtime/value.c \
           $(SRC_DIR)/stdlib/stdlib.c
 
