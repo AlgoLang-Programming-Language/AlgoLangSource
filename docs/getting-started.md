@@ -1,112 +1,220 @@
 # Getting Started with Algolang
 
-Welcome to Algolang! This guide will help you get up and running quickly.
+Welcome to **Algolang** - a math-first, algorithm-focused programming language designed for clarity, correctness, and learning. This guide will get you up and running in minutes.
+
+---
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Your First Program](#your-first-program)
+3. [Language Fundamentals](#language-fundamentals)
+4. [Control Flow](#control-flow)
+5. [Functions](#functions)
+6. [Standard Library](#standard-library)
+7. [Examples](#examples)
+8. [Best Practices](#best-practices)
+9. [Next Steps](#next-steps)
+
+---
 
 ## Installation
 
 ### Prerequisites
 
-- **C Compiler**: GCC or Clang
+Before building Algolang, ensure you have:
+
+- **C Compiler**: GCC 7+ or Clang 10+
 - **Make**: Build automation tool
-- **Standard C Library**: Usually pre-installed
-- **Math Library**: libm (usually included with GCC)
+- **Git**: For cloning the repository
 
-### Building from Source
+Most Linux and macOS systems have these pre-installed. On Windows, use MinGW or MSYS2.
 
-1. **Clone or download the Algolang repository**
+### Quick Installation
 
-2. **Navigate to the project directory**:
-   ```bash
-   cd algolang
-   ```
+**Clone and build in 3 commands:**
 
-3. **Build the executable**:
-   ```bash
-   make
-   ```
-   
-   Or use the build script:
-   ```bash
-   chmod +x build.sh
-   ./build.sh
-   ```
-
-4. **Verify installation**:
-   ```bash
-   ./algolang
-   ```
-   
-   You should see the REPL prompt:
-   ```
-   Algolang 0.1.0
-   Type 'exit' to quit
-   
-   >
-   ```
-
-### Platform-Specific Notes
-
-**Linux**:
 ```bash
+git clone https://github.com/AlgoLang-Programming-Language/AlgoLangSource.git
+cd AlgoLangSource
 make
-sudo make install  # Optional: install system-wide
 ```
 
-**macOS**:
-```bash
-make
-# May need to install command line tools first:
-# xcode-select --install
-```
+That's it! The `algolang` executable is now ready.
 
-**Windows (MinGW/MSYS2)**:
-```bash
-make
-# Or manually compile:
-gcc -Wall -Wextra -std=c11 -Iinclude -O2 src/**/*.c -o algolang.exe -lm
-```
+### Verify Installation
 
-## Your First Program
-
-### Using the REPL
-
-The REPL (Read-Eval-Print Loop) is great for experimentation:
+Start the REPL to confirm everything works:
 
 ```bash
 ./algolang
 ```
 
-Try some expressions:
+You should see:
+
+```
+Algolang 0.1.0
+Type 'exit' to quit
+
+>
+```
+
+Try a simple expression:
+
 ```algo
 > 2 + 2
 4
-> let x = 10
-> x * 5
-50
-> print x
-10
+> print 42
+42
 ```
 
-### Writing a Script
+Type `exit` to quit the REPL.
 
-Create a file `hello.algo`:
+### Platform-Specific Notes
+
+<details>
+<summary><b>Linux (Ubuntu/Debian)</b></summary>
+
+```bash
+# Install dependencies (if needed)
+sudo apt update
+sudo apt install build-essential git
+
+# Clone and build
+git clone https://github.com/AlgoLang-Programming-Language/AlgoLangSource.git
+cd AlgoLangSource
+make
+
+# Optional: Install system-wide
+sudo make install
+```
+</details>
+
+<details>
+<summary><b>macOS</b></summary>
+
+```bash
+# Install Xcode Command Line Tools (if needed)
+xcode-select --install
+
+# Clone and build
+git clone https://github.com/AlgoLang-Programming-Language/AlgoLangSource.git
+cd AlgoLangSource
+make
+
+# Optional: Install to /usr/local/bin
+sudo make install
+```
+</details>
+
+<details>
+<summary><b>Windows (MSYS2)</b></summary>
+
+```bash
+# In MSYS2 terminal, install GCC
+pacman -S mingw-w64-x86_64-gcc make git
+
+# Clone and build
+git clone https://github.com/AlgoLang-Programming-Language/AlgoLangSource.git
+cd AlgoLangSource
+make
+
+# The algolang.exe is now ready
+```
+</details>
+
+### Alternative: Manual Compilation
+
+If `make` doesn't work, compile manually:
+
+```bash
+gcc -Wall -Wextra -std=c11 -O2 -Iinclude \
+    src/main.c \
+    src/lexer/lexer.c \
+    src/parser/parser.c \
+    src/parser/ast.c \
+    src/bytecode/compiler.c \
+    src/vm/vm.c \
+    src/vm/globals.c \
+    src/runtime/value.c \
+    src/stdlib/stdlib.c \
+    -o algolang -lm
+```
+
+---
+
+## Your First Program
+
+### Hello World (REPL)
+
+The easiest way to start is the REPL (Read-Eval-Print Loop):
+
+```bash
+./algolang
+```
+
+Try these commands:
+
+```algo
+> print 42
+42
+> let name = 100
+> print name
+100
+> name + 50
+150
+```
+
+### Hello World (Script)
+
+Create a file named `hello.algo`:
 
 ```algo
 # My first Algolang program
-fn greet(name) {
-  print name
-}
-
-let message = 42
-greet(message)
+print 42
+print true
+print 3.14159
 ```
 
 Run it:
+
 ```bash
 ./algolang hello.algo
 ```
 
-## Language Basics
+Output:
+```
+42
+true
+3.14159
+```
+
+### Simple Function
+
+Create `greet.algo`:
+
+```algo
+fn greet(name) {
+  print name
+}
+
+let message = 100
+greet(message)
+```
+
+Run:
+```bash
+./algolang greet.algo
+```
+
+Output:
+```
+100
+```
+
+---
+
+## Language Fundamentals
 
 ### Variables
 
@@ -116,44 +224,81 @@ Declare variables with `let`:
 let x = 10
 let y = 20
 let sum = x + y
+print sum
 ```
 
-Variables are dynamically typed and can be reassigned:
+Variables can be reassigned:
 
 ```algo
-let x = 10
-x = 20
-x = x + 5
+let counter = 0
+counter = counter + 1
+counter = counter + 1
+print counter
 ```
 
-### Numbers
+### Data Types
 
-All numbers are 64-bit floating point:
+Algolang has three primitive types:
 
+**Numbers** (64-bit floating point):
 ```algo
 let integer = 42
 let decimal = 3.14159
 let negative = -17
-let calculation = (5 + 3) * 2
+let scientific = 1.5
 ```
 
-### Booleans
-
+**Booleans**:
 ```algo
-let flag = true
-let condition = false
+let yes = true
+let no = false
 let result = 10 > 5
+print result
 ```
 
-### Printing
-
-Use `print` to output values:
-
+**Nil** (absence of value):
 ```algo
-print 42
-print true
-print 2 + 2
+let empty = nil
 ```
+
+### Operators
+
+**Arithmetic**:
+```algo
+print 10 + 5      # Addition
+print 10 - 5      # Subtraction
+print 10 * 5      # Multiplication
+print 10 / 5      # Division
+print 10 % 3      # Modulo (remainder)
+```
+
+**Comparison**:
+```algo
+print 10 == 10    # Equal to
+print 10 != 5     # Not equal to
+print 5 < 10      # Less than
+print 10 <= 10    # Less than or equal
+print 15 > 10     # Greater than
+print 10 >= 10    # Greater than or equal
+```
+
+**Logical**:
+```algo
+print true and false    # Logical AND
+print true or false     # Logical OR
+print !false           # Logical NOT
+```
+
+**Operator Precedence** (highest to lowest):
+1. Parentheses: `()`
+2. Unary: `!`, `-`
+3. Multiplicative: `*`, `/`, `%`
+4. Additive: `+`, `-`
+5. Comparison: `<`, `<=`, `>`, `>=`
+6. Equality: `==`, `!=`
+7. Logical AND: `and`
+8. Logical OR: `or`
+9. Assignment: `=`
 
 ### Comments
 
@@ -162,61 +307,120 @@ Single-line comments start with `#`:
 ```algo
 # This is a comment
 let x = 10  # Inline comment
+
+# Comments can explain your code
+# They are ignored by the compiler
 ```
+
+---
 
 ## Control Flow
 
 ### If Statements
 
+**Simple if**:
 ```algo
 let x = 10
 
 if x > 5 {
   print true
 }
+```
 
-if x < 5 {
-  print false
-} else {
+**If-else**:
+```algo
+let age = 20
+
+if age >= 18 {
   print true
-}
-
-if x < 5 {
-  print 1
-} else if x < 15 {
-  print 2
 } else {
+  print false
+}
+```
+
+**If-else-if chains**:
+```algo
+let score = 85
+
+if score >= 90 {
+  print 1
+} else if score >= 80 {
+  print 2
+} else if score >= 70 {
   print 3
+} else {
+  print 4
+}
+```
+
+**Nested conditions**:
+```algo
+let x = 15
+let y = 20
+
+if x > 10 {
+  if y > 10 {
+    print true
+  }
 }
 ```
 
 ### While Loops
 
+**Basic loop**:
 ```algo
 let i = 0
-while i < 10 {
+while i < 5 {
   print i
   i = i + 1
 }
 ```
 
-Example: Sum first 10 numbers
+**Counting down**:
+```algo
+let countdown = 10
+while countdown > 0 {
+  print countdown
+  countdown = countdown - 1
+}
+```
+
+**Loop with condition**:
 ```algo
 let sum = 0
-let i = 1
+let n = 1
 
-while i <= 10 {
-  sum = sum + i
-  i = i + 1
+while sum < 100 {
+  sum = sum + n
+  n = n + 1
 }
 
 print sum
+print n
 ```
+
+### Blocks
+
+Blocks create new scopes:
+
+```algo
+let x = 10
+
+{
+  let x = 20
+  print x    # Prints 20
+}
+
+print x      # Prints 10
+```
+
+---
 
 ## Functions
 
 ### Defining Functions
 
+Basic function:
 ```algo
 fn add(a, b) {
   return a + b
@@ -226,8 +430,16 @@ let result = add(5, 3)
 print result
 ```
 
-### Functions without Return
+Function without parameters:
+```algo
+fn sayHello() {
+  print 42
+}
 
+sayHello()
+```
+
+Function without explicit return:
 ```algo
 fn printSquare(n) {
   print n * n
@@ -236,8 +448,37 @@ fn printSquare(n) {
 printSquare(7)
 ```
 
-### Recursive Functions
+### Return Values
 
+Functions can return values:
+
+```algo
+fn multiply(a, b) {
+  return a * b
+}
+
+let product = multiply(6, 7)
+print product
+```
+
+Early returns:
+```algo
+fn absolute(n) {
+  if n < 0 {
+    return -n
+  }
+  return n
+}
+
+print absolute(-42)
+print absolute(42)
+```
+
+### Recursion
+
+Functions can call themselves:
+
+**Factorial**:
 ```algo
 fn factorial(n) {
   if n <= 1 {
@@ -249,82 +490,190 @@ fn factorial(n) {
 print factorial(5)
 ```
 
-## Operators
-
-### Arithmetic
-- `+` Addition
-- `-` Subtraction
-- `*` Multiplication
-- `/` Division
-- `%` Modulo
-
-```algo
-print 10 + 5
-print 10 - 5
-print 10 * 5
-print 10 / 5
-print 10 % 3
-```
-
-### Comparison
-- `==` Equal
-- `!=` Not equal
-- `<` Less than
-- `<=` Less than or equal
-- `>` Greater than
-- `>=` Greater than or equal
-
-```algo
-print 10 == 10
-print 10 != 5
-print 5 < 10
-print 10 >= 10
-```
-
-### Logical
-- `and` Logical AND
-- `or` Logical OR
-- `!` Logical NOT
-
-```algo
-print true and false
-print true or false
-print !false
-```
-
-## Standard Library
-
-Algolang includes mathematical functions:
-
-```algo
-# Absolute value
-print abs(-42)
-
-# Min and max
-print min(10, 20)
-print max(10, 20)
-
-# Square root
-print sqrt(16)
-
-# Power
-print pow(2, 10)
-
-# Rounding
-print floor(3.7)
-print ceil(3.2)
-```
-
-## Complete Example Programs
-
-### Fibonacci Sequence
-
+**Fibonacci**:
 ```algo
 fn fib(n) {
   if n <= 1 {
     return n
   }
   return fib(n - 1) + fib(n - 2)
+}
+
+print fib(10)
+```
+
+**Greatest Common Divisor**:
+```algo
+fn gcd(a, b) {
+  if b == 0 {
+    return a
+  }
+  return gcd(b, a % b)
+}
+
+print gcd(48, 18)
+```
+
+### Scope
+
+Variables are scoped to their blocks:
+
+```algo
+let global = 100
+
+fn example() {
+  let local = 200
+  print global  # Can access global
+  print local   # Can access local
+}
+
+example()
+# print local would error - local is not accessible here
+```
+
+---
+
+## Standard Library
+
+Algolang includes built-in mathematical functions:
+
+### Math Functions
+
+**abs(x)** - Absolute value:
+```algo
+print abs(-42)     # 42
+print abs(3.14)    # 3.14
+```
+
+**min(a, b)** - Minimum of two numbers:
+```algo
+print min(10, 20)  # 10
+print min(-5, 3)   # -5
+```
+
+**max(a, b)** - Maximum of two numbers:
+```algo
+print max(10, 20)  # 20
+print max(-5, 3)   # 3
+```
+
+**sqrt(x)** - Square root:
+```algo
+print sqrt(16)     # 4
+print sqrt(2)      # 1.41421...
+print sqrt(144)    # 12
+```
+
+**pow(x, y)** - Power (x^y):
+```algo
+print pow(2, 10)   # 1024
+print pow(3, 3)    # 27
+print pow(5, 2)    # 25
+```
+
+**floor(x)** - Round down:
+```algo
+print floor(3.7)   # 3
+print floor(-2.3)  # -3
+```
+
+**ceil(x)** - Round up:
+```algo
+print ceil(3.2)    # 4
+print ceil(-2.8)   # -2
+```
+
+### Using Standard Library
+
+Combine functions for complex calculations:
+
+```algo
+let a = -15.7
+let b = 23.2
+
+print abs(a)                    # 15.7
+print max(abs(a), abs(b))       # 23.2
+print floor(a)                  # -16
+print ceil(b)                   # 24
+print sqrt(pow(3, 2) + pow(4, 2))  # 5 (Pythagorean theorem)
+```
+
+---
+
+## Examples
+
+### Example 1: Sum First N Numbers
+
+```algo
+fn sumN(n) {
+  let sum = 0
+  let i = 1
+  
+  while i <= n {
+    sum = sum + i
+    i = i + 1
+  }
+  
+  return sum
+}
+
+print sumN(10)    # 55
+print sumN(100)   # 5050
+```
+
+### Example 2: Check Prime Number
+
+```algo
+fn isPrime(n) {
+  if n < 2 {
+    return false
+  }
+  
+  if n == 2 {
+    return true
+  }
+  
+  if n % 2 == 0 {
+    return false
+  }
+  
+  let i = 3
+  while i * i <= n {
+    if n % i == 0 {
+      return false
+    }
+    i = i + 2
+  }
+  
+  return true
+}
+
+print isPrime(2)      # true
+print isPrime(17)     # true
+print isPrime(100)    # false
+print isPrime(97)     # true
+```
+
+### Example 3: Fibonacci Sequence
+
+```algo
+fn fib(n) {
+  if n <= 1 {
+    return n
+  }
+  
+  let a = 0
+  let b = 1
+  let i = 2
+  
+  while i <= n {
+    let temp = a + b
+    a = b
+    b = temp
+    i = i + 1
+  }
+  
+  return b
 }
 
 let i = 0
@@ -334,56 +683,206 @@ while i <= 10 {
 }
 ```
 
-### Prime Number Checker
+### Example 4: Power Function (Iterative)
 
 ```algo
-fn isPrime(n) {
-  if n < 2 {
-    return false
+fn power(base, exp) {
+  let result = 1
+  let i = 0
+  
+  while i < exp {
+    result = result * base
+    i = i + 1
   }
   
-  let i = 2
-  while i * i <= n {
-    if n % i == 0 {
-      return false
+  return result
+}
+
+print power(2, 10)   # 1024
+print power(3, 4)    # 81
+```
+
+### Example 5: Collatz Conjecture
+
+```algo
+fn collatz(n) {
+  let steps = 0
+  
+  while n != 1 {
+    if n % 2 == 0 {
+      n = n / 2
+    } else {
+      n = 3 * n + 1
+    }
+    steps = steps + 1
+  }
+  
+  return steps
+}
+
+print collatz(27)    # 111
+print collatz(10)    # 6
+```
+
+---
+
+## Best Practices
+
+### 1. Use Descriptive Names
+
+**Good**:
+```algo
+let totalScore = 0
+let playerCount = 10
+```
+
+**Bad**:
+```algo
+let ts = 0
+let pc = 10
+```
+
+### 2. Initialize Variables
+
+Always give variables an initial value:
+
+```algo
+let sum = 0       # Good
+let count = 0     # Good
+let value         # Bad - defaults to nil
+```
+
+### 3. Keep Functions Small
+
+Each function should do one thing:
+
+```algo
+fn isEven(n) {
+  return n % 2 == 0
+}
+
+fn countEvens(limit) {
+  let count = 0
+  let i = 0
+  
+  while i <= limit {
+    if isEven(i) {
+      count = count + 1
     }
     i = i + 1
   }
   
-  return true
+  return count
 }
-
-print isPrime(17)
-print isPrime(100)
 ```
 
-### Greatest Common Divisor
+### 4. Comment Complex Logic
 
 ```algo
-fn gcd(a, b) {
-  while b != 0 {
-    let temp = b
-    b = a % b
-    a = temp
+# Binary search requires sorted input
+fn binarySearch(target, low, high) {
+  while low <= high {
+    let mid = floor((low + high) / 2)
+    
+    if mid == target {
+      return mid
+    } else if mid < target {
+      low = mid + 1
+    } else {
+      high = mid - 1
+    }
   }
-  return a
+  
+  return -1
 }
-
-print gcd(48, 18)
 ```
 
-## Running the Examples
+### 5. Prefer Iteration Over Recursion
 
-Algolang comes with several example programs:
+**Recursive** (elegant but slower):
+```algo
+fn fib(n) {
+  if n <= 1 {
+    return n
+  }
+  return fib(n - 1) + fib(n - 2)
+}
+```
+
+**Iterative** (faster, uses less memory):
+```algo
+fn fib(n) {
+  if n <= 1 {
+    return n
+  }
+  
+  let a = 0
+  let b = 1
+  let i = 2
+  
+  while i <= n {
+    let temp = a + b
+    a = b
+    b = temp
+    i = i + 1
+  }
+  
+  return b
+}
+```
+
+### 6. Handle Edge Cases
+
+```algo
+fn divide(a, b) {
+  if b == 0 {
+    print 0
+    return 0
+  }
+  return a / b
+}
+
+fn sqrt_safe(n) {
+  if n < 0 {
+    print 0
+    return 0
+  }
+  return sqrt(n)
+}
+```
+
+### 7. Test Your Code
+
+Start with simple test cases:
+
+```algo
+fn add(a, b) {
+  return a + b
+}
+
+# Test cases
+print add(2, 3)      # Should print 5
+print add(0, 0)      # Should print 0
+print add(-5, 5)     # Should print 0
+print add(100, 200)  # Should print 300
+```
+
+---
+
+## Next Steps
+
+### Run the Examples
+
+Algolang includes several example programs:
 
 ```bash
 # Basic examples
 ./algolang examples/hello.algo
 
-# Fibonacci (recursive and iterative)
+# Fibonacci sequence
 ./algolang examples/fib.algo
 
-# GCD and LCM
+# GCD algorithm
 ./algolang examples/gcd.algo
 
 # Sorting algorithms
@@ -396,207 +895,84 @@ Algolang comes with several example programs:
 make test
 ```
 
-## Tips and Best Practices
+### Read More Documentation
 
-### 1. Use Meaningful Variable Names
+- **[Syntax Reference](syntax.md)** - Complete language grammar
+- **[Bytecode Specification](bytecode.md)** - How the VM works
+- **[Development Roadmap](roadmap.md)** - Future features
 
-**Good**:
-```algo
-let sum = 0
-let counter = 1
-```
+### Try These Exercises
 
-**Bad**:
-```algo
-let s = 0
-let c = 1
-```
+1. **Sum of Squares**: Write a function that computes 1² + 2² + ... + n²
+2. **Armstrong Numbers**: Check if a number equals the sum of its digits cubed
+3. **Palindrome Numbers**: Check if a number reads the same forwards and backwards
+4. **Binary to Decimal**: Convert binary numbers to decimal
+5. **LCM Calculator**: Find the least common multiple using GCD
 
-### 2. Keep Functions Small
-
-Each function should do one thing well:
+### Example Solution: Sum of Squares
 
 ```algo
-fn calculateSum(n) {
+fn sumOfSquares(n) {
   let sum = 0
   let i = 1
+  
   while i <= n {
-    sum = sum + i
+    sum = sum + i * i
     i = i + 1
   }
+  
   return sum
 }
+
+print sumOfSquares(5)   # 1 + 4 + 9 + 16 + 25 = 55
+print sumOfSquares(10)  # 385
 ```
 
-### 3. Use Iterative Over Recursive When Possible
-
-Recursion is elegant but can be slower and use more memory:
-
-**Recursive** (simple but slower):
-```algo
-fn fib(n) {
-  if n <= 1 {
-    return n
-  }
-  return fib(n - 1) + fib(n - 2)
-}
-```
-
-**Iterative** (faster):
-```algo
-fn fib(n) {
-  if n <= 1 {
-    return n
-  }
-  let a = 0
-  let b = 1
-  let i = 2
-  while i <= n {
-    let temp = a + b
-    a = b
-    b = temp
-    i = i + 1
-  }
-  return b
-}
-```
-
-### 4. Initialize Variables
-
-Always initialize variables:
-
-```algo
-let sum = 0  # Good
-let count    # Bad - defaults to nil
-```
-
-### 5. Test Edge Cases
-
-Always test your functions with edge cases:
-
-```algo
-fn divide(a, b) {
-  if b == 0 {
-    print 0  # Handle division by zero
-    return 0
-  }
-  return a / b
-}
-```
-
-## Common Patterns
-
-### Accumulator Pattern
-
-```algo
-fn sum(n) {
-  let total = 0
-  let i = 1
-  while i <= n {
-    total = total + i
-    i = i + 1
-  }
-  return total
-}
-```
-
-### Counter Pattern
-
-```algo
-fn countEvens(limit) {
-  let count = 0
-  let i = 0
-  while i <= limit {
-    if i % 2 == 0 {
-      count = count + 1
-    }
-    i = i + 1
-  }
-  return count
-}
-```
-
-### Search Pattern
-
-```algo
-fn find(target, limit) {
-  let i = 0
-  while i <= limit {
-    if i == target {
-      return i
-    }
-    i = i + 1
-  }
-  return -1
-}
-```
-
-## Debugging Tips
-
-### Print Variable Values
-
-```algo
-let x = 10
-print x  # See what x is
-
-let y = x * 2
-print y  # Check intermediate calculations
-```
-
-### Break Down Complex Expressions
-
-Instead of:
-```algo
-let result = (a + b) * (c - d) / (e + f)
-```
-
-Do:
-```algo
-let sum1 = a + b
-let diff = c - d
-let sum2 = e + f
-let result = sum1 * diff / sum2
-```
-
-### Test Functions Independently
-
-```algo
-fn helper(x) {
-  return x * 2
-}
-
-# Test it first
-print helper(5)  # Should print 10
-
-fn main() {
-  let result = helper(10)
-  print result
-}
-
-main()
-```
-
-## Next Steps
-
-1. **Read the syntax guide**: See `docs/syntax.md` for complete language reference
-2. **Study the examples**: Look at programs in `examples/` directory
-3. **Try the exercises**: Write your own algorithms
-4. **Explore the bytecode**: Read `docs/bytecode.md` to understand how Algolang works
+---
 
 ## Getting Help
 
-- **Check the documentation**: `docs/` directory
-- **Read error messages**: They usually point to the problem
-- **Start with simple programs**: Build complexity gradually
-- **Use the REPL**: Test expressions interactively
+### Common Issues
 
-## What's Next?
+**Q: `algolang: command not found`**  
+A: Run `./algolang` from the project directory, or run `sudo make install`
 
-Now that you know the basics, try:
+**Q: Compilation errors**  
+A: Ensure GCC 7+ is installed: `gcc --version`
 
-1. Implementing classic algorithms (binary search, merge sort)
-2. Solving mathematical problems (Project Euler)
-3. Writing your own utility functions
-4. Contributing to Algolang development
+**Q: Math functions not working**  
+A: Make sure to link with `-lm` flag when compiling manually
 
-Happy coding!
+### Resources
+
+- **GitHub Repository**: [AlgoLangSource](https://github.com/AlgoLang-Programming-Language/AlgoLangSource)
+- **Report Issues**: [GitHub Issues](https://github.com/AlgoLang-Programming-Language/AlgoLangSource/issues)
+- **Documentation**: `docs/` directory in the repository
+
+### Community
+
+Join the Algolang community:
+- Open issues for bugs or feature requests
+- Submit pull requests to contribute
+- Share your programs and algorithms
+- Help improve documentation
+
+---
+
+## Summary
+
+You've learned:
+- ✅ How to install and run Algolang
+- ✅ Basic syntax and data types
+- ✅ Control flow (if, while)
+- ✅ Functions and recursion
+- ✅ Standard library functions
+- ✅ Best practices and patterns
+
+**Next**: Try implementing your favorite algorithms in Algolang!
+
+---
+
+**Happy coding!** 🚀
+
+*Algolang v0.1.0 | Last Updated: December 2025*
