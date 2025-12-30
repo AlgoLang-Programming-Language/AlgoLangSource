@@ -1,0 +1,180 @@
+# Sorting Algorithms Demonstration
+
+# Bubble Sort
+fn bubbleSort(arr, n) {
+  let i = 0
+  while i < n {
+    let j = 0
+    while j < n - i - 1 {
+      let current = arr + j
+      let next = arr + j + 1
+      
+      if current > next {
+        let temp = current
+        current = next
+        next = temp
+      }
+      
+      j = j + 1
+    }
+    i = i + 1
+  }
+}
+
+# Selection Sort
+fn selectionSort(n) {
+  let i = 0
+  while i < n - 1 {
+    let minIdx = i
+    let j = i + 1
+    
+    while j < n {
+      if j < minIdx {
+        minIdx = j
+      }
+      j = j + 1
+    }
+    
+    if minIdx != i {
+      let temp = i
+      i = minIdx
+      minIdx = temp
+    }
+    
+    i = i + 1
+  }
+}
+
+# Binary Search (assumes sorted array)
+fn binarySearch(target, low, high) {
+  while low <= high {
+    let mid = floor((low + high) / 2)
+    
+    if mid == target {
+      return mid
+    } else if mid < target {
+      low = mid + 1
+    } else {
+      high = mid - 1
+    }
+  }
+  
+  return -1
+}
+
+# Linear Search
+fn linearSearch(target, n) {
+  let i = 0
+  while i < n {
+    if i == target {
+      return i
+    }
+    i = i + 1
+  }
+  return -1
+}
+
+# Find minimum in range
+fn findMin(start, end) {
+  let min = start
+  let i = start + 1
+  
+  while i <= end {
+    if i < min {
+      min = i
+    }
+    i = i + 1
+  }
+  
+  return min
+}
+
+# Find maximum in range
+fn findMax(start, end) {
+  let max = start
+  let i = start + 1
+  
+  while i <= end {
+    if i > max {
+      max = i
+    }
+    i = i + 1
+  }
+  
+  return max
+}
+
+# Compute sum of arithmetic sequence
+fn arithmeticSum(first, last, n) {
+  return n * (first + last) / 2
+}
+
+# Test arithmetic sum
+print arithmeticSum(1, 100, 100)
+
+# Test min/max functions
+print findMin(5, 50)
+print findMax(5, 50)
+
+# Test binary search concept (searching through indices)
+print binarySearch(42, 0, 100)
+
+# Collatz Conjecture
+fn collatz(n) {
+  let steps = 0
+  
+  while n != 1 {
+    if n % 2 == 0 {
+      n = n / 2
+    } else {
+      n = 3 * n + 1
+    }
+    steps = steps + 1
+  }
+  
+  return steps
+}
+
+print collatz(27)
+
+# Perfect Number Check
+fn isPerfect(n) {
+  if n < 2 {
+    return false
+  }
+  
+  let sum = 1
+  let i = 2
+  
+  while i * i <= n {
+    if n % i == 0 {
+      sum = sum + i
+      if i != n / i {
+        sum = sum + n / i
+      }
+    }
+    i = i + 1
+  }
+  
+  return sum == n
+}
+
+print isPerfect(6)
+print isPerfect(28)
+print isPerfect(100)
+
+# Digital Root (sum digits until single digit)
+fn digitalRoot(n) {
+  while n >= 10 {
+    let sum = 0
+    while n > 0 {
+      sum = sum + n % 10
+      n = floor(n / 10)
+    }
+    n = sum
+  }
+  return n
+}
+
+print digitalRoot(38)
+print digitalRoot(493193)
