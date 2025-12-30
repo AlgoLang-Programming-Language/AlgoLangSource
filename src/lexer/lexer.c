@@ -138,6 +138,23 @@ static Token number(Lexer* lexer) {
     return make_token(lexer, TOKEN_NUMBER);
 }
 
+static Token string(Lexer* lexer) {
+    while (peek(lexer) != '"' && !is_at_end(lexer)) {
+        if (peek(lexer) == '\n') {
+            lexer->line++;
+            lexer->column = 0;
+        }
+        advance(lexer);
+    }
+    
+    if (is_at_end(lexer)) {
+        return error_token(lexer, "Unterminated string");
+    }
+    
+    advance(lexer);
+    return make_token(lexer, TOKEN_STRING);
+}
+
 Token lexer_next_token(Lexer* lexer) {
     skip_whitespace(lexer);
     lexer->start = lexer->current;
@@ -156,6 +173,10 @@ Token lexer_next_token(Lexer* lexer) {
         return number(lexer);
     }
     
+    if (c == '"') {
+        return string(lexer);
+    }
+    
     switch (c) {
         case '(': return make_token(lexer, TOKEN_LPAREN);
         case ')': return make_token(lexer, TOKEN_RPAREN);
@@ -165,11 +186,20 @@ Token lexer_next_token(Lexer* lexer) {
         case ']': return make_token(lexer, TOKEN_RBRACKET);
         case ',': return make_token(lexer, TOKEN_COMMA);
         case ';': return make_token(lexer, TOKEN_SEMICOLON);
-        case '+': return make_token(lexer, TOKEN_PLUS);
-        case '-': return make_token(lexer, TOKEN_MINUS);
-        case '*': return make_token(lexer, TOKEN_STAR);
-        case '/': return make_token(lexer, TOKEN_SLASH);
+        case '.': return make_token(lexer, TOKEN_DOT);
         case '%': return make_token(lexer, TOKEN_PERCENT);
+        case '+':
+            if (match(lexer, '+')) return make_token(lexer, TOKEN_PLUS_PLUS);
+            if (match(lexer, '=')) return make_token(lexer, TOKEN_PLUS_EQ);
+            return make_token(lexer, TOKEN_PLUS);
+        case '-':
+            if (match(lexer, '-')) return make_token(lexer, TOKEN_MINUS_MINUS);
+            if (match(lexer, '=')) return make_token(lexer, TOKEN_MINUS_EQ);
+            return make_token(lexer, TOKEN_MINUS);
+        case '*':
+            return make_token(lexer, match(lexer, '=') ? TOKEN_STAR_EQ : TOKEN_STAR);
+        case '/':
+            return make_token(lexer, match(lexer, '=') ? TOKEN_SLASH_EQ : TOKEN_SLASH);
         case '!':
             return make_token(lexer, match(lexer, '=') ? TOKEN_BANG_EQ : TOKEN_BANG);
         case '=':
