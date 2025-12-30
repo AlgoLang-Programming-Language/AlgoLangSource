@@ -1,0 +1,186 @@
+# Prime Number Algorithms
+
+# Check if a number is prime
+fn isPrime(n) {
+  if n < 2 {
+    return false
+  }
+  
+  if n == 2 {
+    return true
+  }
+  
+  if n % 2 == 0 {
+    return false
+  }
+  
+  let i = 3
+  while i * i <= n {
+    if n % i == 0 {
+      return false
+    }
+    i = i + 2
+  }
+  
+  return true
+}
+
+# Print first N primes
+fn printPrimes(count) {
+  let found = 0
+  let candidate = 2
+  
+  while found < count {
+    if isPrime(candidate) {
+      print candidate
+      found = found + 1
+    }
+    candidate = candidate + 1
+  }
+}
+
+# Count primes up to N
+fn countPrimes(limit) {
+  let count = 0
+  let n = 2
+  
+  while n <= limit {
+    if isPrime(n) {
+      count = count + 1
+    }
+    n = n + 1
+  }
+  
+  return count
+}
+
+# Find next prime after N
+fn nextPrime(n) {
+  let candidate = n + 1
+  
+  while !isPrime(candidate) {
+    candidate = candidate + 1
+  }
+  
+  return candidate
+}
+
+# Sum of primes up to N
+fn sumPrimes(limit) {
+  let sum = 0
+  let n = 2
+  
+  while n <= limit {
+    if isPrime(n) {
+      sum = sum + n
+    }
+    n = n + 1
+  }
+  
+  return sum
+}
+
+# Twin primes: pairs of primes that differ by 2
+fn findTwinPrimes(limit) {
+  let n = 3
+  let count = 0
+  
+  while n <= limit - 2 {
+    if isPrime(n) and isPrime(n + 2) {
+      print n
+      print n + 2
+      print 0
+      count = count + 1
+    }
+    n = n + 2
+  }
+  
+  return count
+}
+
+# Prime factorization helper
+fn smallestPrimeFactor(n) {
+  if n % 2 == 0 {
+    return 2
+  }
+  
+  let i = 3
+  while i * i <= n {
+    if n % i == 0 {
+      return i
+    }
+    i = i + 2
+  }
+  
+  return n
+}
+
+# Count prime factors
+fn countPrimeFactors(n) {
+  let count = 0
+  
+  while n > 1 {
+    let factor = smallestPrimeFactor(n)
+    while n % factor == 0 {
+      n = n / factor
+      count = count + 1
+    }
+  }
+  
+  return count
+}
+
+# Goldbach's conjecture verification
+fn goldbach(n) {
+  if n <= 2 or n % 2 != 0 {
+    return false
+  }
+  
+  let p = 2
+  while p <= n / 2 {
+    if isPrime(p) and isPrime(n - p) {
+      print p
+      print n - p
+      return true
+    }
+    p = p + 1
+  }
+  
+  return false
+}
+
+print isPrime(2)
+print isPrime(17)
+print isPrime(100)
+print isPrime(97)
+
+print 0
+
+print nextPrime(10)
+print nextPrime(20)
+print nextPrime(100)
+
+print 0
+
+print countPrimes(100)
+print sumPrimes(100)
+
+print 0
+
+printPrimes(10)
+
+print 0
+
+print countPrimeFactors(12)
+print countPrimeFactors(100)
+print countPrimeFactors(97)
+
+print 0
+
+goldbach(10)
+print 0
+goldbach(100)
+
+print 0
+
+findTwinPrimes(50)
