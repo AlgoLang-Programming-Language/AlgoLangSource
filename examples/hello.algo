@@ -1,0 +1,22 @@
+# Hello World in Algolang
+
+fn greet(name) {
+  print name
+}
+
+let message = 42
+print message
+
+greet(message)
+
+let x = 10
+let y = 20
+let sum = x + y
+
+print sum
+
+if sum > 25 {
+  print true
+} else {
+  print false
+}
