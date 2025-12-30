@@ -219,6 +219,7 @@ const char* token_type_name(TokenType type) {
         case TOKEN_ERROR: return "ERROR";
         case TOKEN_IDENTIFIER: return "IDENTIFIER";
         case TOKEN_NUMBER: return "NUMBER";
+        case TOKEN_STRING: return "STRING";
         case TOKEN_TRUE: return "TRUE";
         case TOKEN_FALSE: return "FALSE";
         case TOKEN_LET: return "LET";
@@ -226,6 +227,9 @@ const char* token_type_name(TokenType type) {
         case TOKEN_IF: return "IF";
         case TOKEN_ELSE: return "ELSE";
         case TOKEN_WHILE: return "WHILE";
+        case TOKEN_FOR: return "FOR";
+        case TOKEN_BREAK: return "BREAK";
+        case TOKEN_CONTINUE: return "CONTINUE";
         case TOKEN_RETURN: return "RETURN";
         case TOKEN_PRINT: return "PRINT";
         case TOKEN_LPAREN: return "LPAREN";
@@ -236,11 +240,18 @@ const char* token_type_name(TokenType type) {
         case TOKEN_RBRACKET: return "RBRACKET";
         case TOKEN_COMMA: return "COMMA";
         case TOKEN_SEMICOLON: return "SEMICOLON";
+        case TOKEN_DOT: return "DOT";
         case TOKEN_PLUS: return "PLUS";
         case TOKEN_MINUS: return "MINUS";
         case TOKEN_STAR: return "STAR";
         case TOKEN_SLASH: return "SLASH";
         case TOKEN_PERCENT: return "PERCENT";
+        case TOKEN_PLUS_PLUS: return "PLUS_PLUS";
+        case TOKEN_MINUS_MINUS: return "MINUS_MINUS";
+        case TOKEN_PLUS_EQ: return "PLUS_EQ";
+        case TOKEN_MINUS_EQ: return "MINUS_EQ";
+        case TOKEN_STAR_EQ: return "STAR_EQ";
+        case TOKEN_SLASH_EQ: return "SLASH_EQ";
         case TOKEN_EQ: return "EQ";
         case TOKEN_EQ_EQ: return "EQ_EQ";
         case TOKEN_BANG: return "BANG";
