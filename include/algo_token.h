@@ -9,6 +9,7 @@ typedef enum {
     
     TOKEN_IDENTIFIER,
     TOKEN_NUMBER,
+    TOKEN_STRING,
     TOKEN_TRUE,
     TOKEN_FALSE,
     
@@ -17,6 +18,9 @@ typedef enum {
     TOKEN_IF,
     TOKEN_ELSE,
     TOKEN_WHILE,
+    TOKEN_FOR,
+    TOKEN_BREAK,
+    TOKEN_CONTINUE,
     TOKEN_RETURN,
     TOKEN_PRINT,
     
@@ -28,12 +32,20 @@ typedef enum {
     TOKEN_RBRACKET,
     TOKEN_COMMA,
     TOKEN_SEMICOLON,
+    TOKEN_DOT,
     
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_STAR,
     TOKEN_SLASH,
     TOKEN_PERCENT,
+    
+    TOKEN_PLUS_PLUS,
+    TOKEN_MINUS_MINUS,
+    TOKEN_PLUS_EQ,
+    TOKEN_MINUS_EQ,
+    TOKEN_STAR_EQ,
+    TOKEN_SLASH_EQ,
     
     TOKEN_EQ,
     TOKEN_EQ_EQ,
