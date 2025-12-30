@@ -2,261 +2,311 @@
 
 ## Current Version: 0.1.0
 
-This document outlines planned features and improvements for future versions of Algolang.
+This document outlines the planned features and improvements for future versions of Algolang.
 
-## Version 0.2.0 - Core Language Extensions
+---
 
-**Target**: Enhanced language features and usability
+## Version 0.2.0 - Enhanced Language Features
+
+**Focus**: Core language extensions and improved developer experience
 
 ### Data Structures
-- [ ] Arrays/Lists with literal syntax `[1, 2, 3]`
-- [ ] Array indexing and slicing
-- [ ] Dictionary/Map data structure
-- [ ] String type and operations
+- [ ] **Arrays/Lists** - Dynamic arrays with literal syntax `[1, 2, 3]`
+- [ ] **Array Operations** - Indexing, slicing, length, append, insert
+- [ ] **Strings** - First-class string type with operations
+- [ ] **Maps/Dictionaries** - Key-value data structures `{key: value}`
 
-### Language Features
-- [ ] For loops (`for i = 0; i < 10; i = i + 1`)
-- [ ] Break and continue statements
-- [ ] Multiple assignment (`let a, b = 1, 2`)
-- [ ] Compound assignment operators (`+=`, `-=`, etc.)
-- [ ] String concatenation
-- [ ] Comments in expressions
+### Control Flow
+- [ ] **For Loops** - Traditional C-style for loops
+- [ ] **Break/Continue** - Loop control statements
+- [ ] **Switch/Match** - Pattern matching for cleaner conditionals
 
-### Standard Library Expansion
-- [ ] String functions (length, substring, split, join)
-- [ ] Array/List functions (push, pop, map, filter, reduce)
-- [ ] More math functions (sin, cos, tan, log, exp)
-- [ ] Random number generation
-- [ ] Time/Date utilities
-
-### Developer Tools
-- [ ] Bytecode disassembler
-- [ ] Debug mode with instruction tracing
-- [ ] Better error messages with stack traces
-- [ ] Source line information in errors
-
-## Version 0.3.0 - Advanced Features
-
-**Target**: Professional-grade language capabilities
-
-### Type System
-- [ ] Optional type annotations
-- [ ] Type inference
-- [ ] Type checking pass
-- [ ] Generic functions
-
-### Memory Management
-- [ ] Mark-and-sweep garbage collector
-- [ ] Memory profiling tools
-- [ ] Circular reference detection
-- [ ] Weak references
-
-### Performance
-- [ ] Constant folding optimization
-- [ ] Dead code elimination
-- [ ] Peephole optimization
-- [ ] Tail call optimization
-- [ ] Just-in-time compilation (experimental)
-
-### Language Features
-- [ ] Closures with proper lexical scoping
-- [ ] First-class functions (already partially supported)
-- [ ] Anonymous functions/lambdas
-- [ ] Variadic functions
-- [ ] Default parameter values
-- [ ] Named arguments
-
-## Version 0.4.0 - Object System
-
-**Target**: Object-oriented programming support
-
-### Classes and Objects
-- [ ] Class declarations
-- [ ] Instance methods
-- [ ] Constructor functions
-- [ ] Instance variables
-- [ ] Class methods/static methods
-- [ ] Inheritance
-- [ ] Method overriding
-
-### Modules
-- [ ] Module/namespace system
-- [ ] Import/export statements
-- [ ] Package management
-- [ ] Standard library organization
-
-## Version 0.5.0 - Ecosystem
-
-**Target**: Practical programming environment
-
-### Tooling
-- [ ] Package manager
-- [ ] Build system
-- [ ] Test framework
-- [ ] Documentation generator
-- [ ] Code formatter
-- [ ] Linter
+### Operators & Syntax
+- [ ] **Compound Assignment** - `+=`, `-=`, `*=`, `/=`, `%=`
+- [ ] **Increment/Decrement** - `++`, `--` operators
+- [ ] **String Interpolation** - Template strings for formatting
+- [ ] **Multi-line Comments** - `/* ... */` style comments
 
 ### Standard Library
-- [ ] File I/O
-- [ ] Network operations (HTTP client)
-- [ ] JSON parsing and generation
-- [ ] CSV handling
-- [ ] Regular expressions
-- [ ] Command-line argument parsing
+- [ ] **String Functions** - `length()`, `substring()`, `split()`, `join()`, `replace()`
+- [ ] **Array Functions** - `push()`, `pop()`, `map()`, `filter()`, `reduce()`, `sort()`
+- [ ] **Math Extensions** - `sin()`, `cos()`, `tan()`, `log()`, `exp()`, `round()`
+- [ ] **Random Numbers** - `random()`, `randomInt()`, `seed()`
+- [ ] **Input/Output** - `input()` for user input, `println()` variant
 
-### Integration
-- [ ] C FFI (Foreign Function Interface)
-- [ ] Embedding API for C programs
-- [ ] Language server protocol (LSP) support
-- [ ] Editor plugins (VS Code, Vim, etc.)
+### Tooling
+- [ ] **Bytecode Disassembler** - View compiled bytecode
+- [ ] **Debug Mode** - Step-through execution with `-d` flag
+- [ ] **Verbose Errors** - Stack traces with line numbers and context
+- [ ] **Syntax Highlighting** - Language definition files for editors
+
+---
+
+## Version 0.3.0 - Performance & Type System
+
+**Focus**: Optimization and optional type safety
+
+### Type System
+- [ ] **Type Annotations** - Optional type hints `fn add(a: number, b: number): number`
+- [ ] **Type Inference** - Automatic type deduction where possible
+- [ ] **Type Checking** - Compile-time type verification (optional strict mode)
+- [ ] **Type Aliases** - Custom type definitions
+
+### Memory Management
+- [ ] **Garbage Collection** - Mark-and-sweep GC implementation
+- [ ] **Reference Counting** - Immediate cleanup for cyclic references
+- [ ] **Memory Profiler** - Track allocations and identify leaks
+- [ ] **Weak References** - Non-owning references
+
+### Optimizations
+- [ ] **Constant Folding** - Evaluate constant expressions at compile-time
+- [ ] **Dead Code Elimination** - Remove unreachable code
+- [ ] **Peephole Optimization** - Instruction-level optimizations
+- [ ] **Tail Call Optimization** - Optimize recursive tail calls
+- [ ] **Inline Functions** - Small function inlining
+
+### Advanced Functions
+- [ ] **Closures** - Proper lexical scope capture
+- [ ] **Anonymous Functions** - Lambda expressions `fn(x) => x * 2`
+- [ ] **Variadic Functions** - Variable argument counts
+- [ ] **Default Parameters** - `fn greet(name = "World")`
+- [ ] **Named Arguments** - Function calls with `add(a: 5, b: 3)`
+
+---
+
+## Version 0.4.0 - Object System & Modules
+
+**Focus**: Object-oriented programming and code organization
+
+### Classes & Objects
+- [ ] **Class Declarations** - `class Point { ... }`
+- [ ] **Constructors** - `init()` method for initialization
+- [ ] **Instance Variables** - `this.x`, `this.y`
+- [ ] **Instance Methods** - Methods bound to instances
+- [ ] **Static Methods** - Class-level methods
+- [ ] **Inheritance** - Single inheritance with `extends`
+- [ ] **Method Overriding** - `super` keyword support
+- [ ] **Interfaces/Traits** - Abstract contracts (if needed)
+
+### Module System
+- [ ] **Module Declarations** - Organize code into modules
+- [ ] **Import/Export** - `import { func } from "module"`, `export fn func()`
+- [ ] **Package Structure** - Standard directory layout
+- [ ] **Namespace Management** - Avoid naming conflicts
+- [ ] **Standard Library Modules** - Organized stdlib structure
+
+---
+
+## Version 0.5.0 - Ecosystem & Tooling
+
+**Focus**: Production-ready development environment
+
+### Package Management
+- [ ] **Package Manager** - `algo install`, `algo update`
+- [ ] **Package Registry** - Central repository for packages
+- [ ] **Dependency Management** - `algo.toml` configuration
+- [ ] **Semantic Versioning** - Version resolution and compatibility
+
+### Build System
+- [ ] **Project Builder** - `algo build` command
+- [ ] **Multi-file Compilation** - Link multiple source files
+- [ ] **Build Configuration** - Custom build flags and targets
+- [ ] **Release Optimization** - Production builds with `-O2`/`-O3`
+
+### Testing Framework
+- [ ] **Test Runner** - `algo test` command
+- [ ] **Assertions** - `assert()`, `assertEqual()`, `assertThrows()`
+- [ ] **Test Organization** - Group tests with `describe()` and `it()`
+- [ ] **Coverage Reports** - Code coverage analysis
+- [ ] **Benchmarking** - Performance testing utilities
+
+### Developer Tools
+- [ ] **Code Formatter** - `algo fmt` for consistent style
+- [ ] **Linter** - `algo lint` for code quality
+- [ ] **Documentation Generator** - Generate docs from comments
+- [ ] **REPL Improvements** - History, auto-complete, syntax highlighting
+
+### Standard Library Extensions
+- [ ] **File I/O** - Read/write files, directory operations
+- [ ] **HTTP Client** - Make HTTP requests
+- [ ] **JSON** - Parse and generate JSON
+- [ ] **CSV** - Read/write CSV files
+- [ ] **Regular Expressions** - Pattern matching
+- [ ] **Command-line Arguments** - Parse CLI args
+- [ ] **Environment Variables** - Access env vars
+- [ ] **Date/Time** - Date manipulation and formatting
+
+---
 
 ## Version 1.0.0 - Stable Release
 
-**Target**: Production-ready language
+**Focus**: Production-ready, stable, well-documented language
 
-### Requirements for 1.0
-- [ ] Complete language specification
-- [ ] Comprehensive test suite (>90% coverage)
-- [ ] Stable API and bytecode format
-- [ ] Complete documentation
-- [ ] Performance benchmarks
-- [ ] Multiple example applications
-- [ ] Security audit
-- [ ] Memory safety guarantees
+### Stability Requirements
+- [ ] **Complete Language Specification** - Formal grammar and semantics
+- [ ] **Comprehensive Test Suite** - 90%+ code coverage
+- [ ] **Stable Bytecode Format** - Version 1.0 bytecode specification
+- [ ] **API Stability Guarantee** - No breaking changes in 1.x
+- [ ] **Performance Benchmarks** - Documented performance characteristics
+- [ ] **Security Audit** - Review for vulnerabilities
+- [ ] **Memory Safety** - No undefined behavior, buffer overflows
 
 ### Documentation
-- [ ] Language reference manual
-- [ ] VM specification
-- [ ] Embedding guide
-- [ ] Tutorial series
-- [ ] API documentation
-- [ ] Best practices guide
-
-## Future Considerations (Post 1.0)
-
-### Advanced Features
-- [ ] Concurrency primitives (coroutines/green threads)
-- [ ] Async/await syntax
-- [ ] Pattern matching
-- [ ] Algebraic data types
-- [ ] Monadic error handling
-- [ ] Macros/metaprogramming
+- [ ] **Language Reference Manual** - Complete syntax and semantics
+- [ ] **Virtual Machine Specification** - Bytecode and execution model
+- [ ] **Standard Library Reference** - Full API documentation
+- [ ] **Tutorial Series** - Beginner to advanced guides
+- [ ] **Example Applications** - Real-world programs
+- [ ] **Best Practices Guide** - Idiomatic Algolang
+- [ ] **Migration Guides** - Upgrade paths between versions
 
 ### Platform Support
-- [ ] WebAssembly target
-- [ ] Mobile platforms (iOS, Android)
-- [ ] Embedded systems
-- [ ] LLVM backend
+- [ ] **Linux** - x86_64, ARM64
+- [ ] **macOS** - x86_64, Apple Silicon
+- [ ] **Windows** - x86_64
+- [ ] **BSD** - FreeBSD, OpenBSD
+
+### Language Server Protocol
+- [ ] **LSP Implementation** - IDE support
+- [ ] **Auto-completion** - Context-aware suggestions
+- [ ] **Go-to-definition** - Navigate to declarations
+- [ ] **Find References** - Show all usages
+- [ ] **Diagnostics** - Real-time error checking
+- [ ] **Hover Information** - Type and documentation on hover
+
+---
+
+## Post-1.0 Future Considerations
+
+### Concurrency
+- [ ] **Async/Await** - Asynchronous programming model
+- [ ] **Coroutines** - Lightweight cooperative multitasking
+- [ ] **Channels** - Message passing between coroutines
+- [ ] **Parallel Collections** - Parallel map/reduce operations
+
+### Advanced Type Features
+- [ ] **Generics** - Parametric polymorphism
+- [ ] **Union Types** - `number | string`
+- [ ] **Algebraic Data Types** - Sum types and pattern matching
+- [ ] **Type Guards** - Runtime type narrowing
+- [ ] **Dependent Types** - Types depending on values (experimental)
+
+### Metaprogramming
+- [ ] **Compile-time Macros** - Code generation at compile time
+- [ ] **Reflection** - Introspect types at runtime
+- [ ] **Annotations/Decorators** - Metadata for declarations
+- [ ] **AST Manipulation** - Programmatic AST access
+
+### Compilation Targets
+- [ ] **WebAssembly** - Run Algolang in browsers
+- [ ] **LLVM Backend** - Native code generation
+- [ ] **JavaScript Transpiler** - Compile to JavaScript
+- [ ] **C Transpiler** - Generate C code
+
+### Platform Extensions
+- [ ] **Mobile Support** - iOS and Android runtimes
+- [ ] **Embedded Systems** - Microcontroller support
+- [ ] **GPU Computing** - CUDA/OpenCL integration
+- [ ] **Native Extensions** - C FFI for calling native libraries
 
 ### Ecosystem
-- [ ] Web framework
-- [ ] GUI library
-- [ ] Database drivers
-- [ ] Scientific computing libraries
-- [ ] Machine learning integration
+- [ ] **Web Framework** - Build web applications
+- [ ] **GUI Library** - Cross-platform desktop apps
+- [ ] **Database Drivers** - PostgreSQL, MySQL, SQLite
+- [ ] **Scientific Computing** - NumPy-like arrays and operations
+- [ ] **Machine Learning** - TensorFlow/PyTorch bindings
+- [ ] **Game Development** - 2D/3D game engine
 
-### Performance
-- [ ] Profile-guided optimization
-- [ ] Register-based VM option
-- [ ] AOT (Ahead-of-Time) compilation
-- [ ] SIMD operations
-- [ ] Parallel execution
+---
 
-## Research Ideas
+## Community & Education
 
-Experimental features to explore:
-
-- [ ] Gradual typing system
-- [ ] Effect system for side effects
-- [ ] Linear types for resource management
-- [ ] Dependent types (limited form)
-- [ ] Formal verification tools
-- [ ] Symbolic execution engine
-
-## Community Roadmap
-
-### Education
-- [ ] Online interactive tutorial
-- [ ] Video course series
-- [ ] University course materials
-- [ ] Algorithm visualization tools
-- [ ] Competitive programming support
+### Learning Resources
+- [ ] **Interactive Online Playground** - Try Algolang in the browser
+- [ ] **Video Course Series** - YouTube tutorials
+- [ ] **University Curriculum** - Course materials for CS education
+- [ ] **Algorithm Visualizations** - Step-by-step execution viewer
+- [ ] **Competitive Programming** - Contest problem support
 
 ### Community Building
-- [ ] Official website
-- [ ] Forum/Discord server
-- [ ] Conference presentations
-- [ ] Blog and tutorials
-- [ ] Contribution guidelines
-- [ ] Code of conduct
+- [ ] **Official Website** - algolang.org domain
+- [ ] **Community Forum** - Discussion board
+- [ ] **Discord Server** - Real-time chat and support
+- [ ] **Annual Conference** - AlgoLang DevCon
+- [ ] **Blog & Newsletter** - Regular updates
+- [ ] **Contribution Guidelines** - How to contribute
+- [ ] **Code of Conduct** - Community standards
 
-## Contributing to the Roadmap
+---
 
-This roadmap is not set in stone. Community feedback and contributions are welcome.
+## Contribution & Feedback
 
-### How to Contribute
-1. Open an issue to discuss new features
-2. Submit PRs for existing roadmap items
-3. Provide feedback on priorities
-4. Share use cases and requirements
+We welcome community input on this roadmap!
 
-### Priority Levels
+**Repository**: [https://github.com/AlgoLang-Programming-Language/AlgoLangSource](https://github.com/AlgoLang-Programming-Language/AlgoLangSource)
 
-- **High**: Essential for next release
-- **Medium**: Important but can be delayed
-- **Low**: Nice to have, time permitting
-- **Research**: Experimental, may not be implemented
+**How to contribute:**
+1. **Open an Issue** - Suggest features or report problems
+2. **Submit a Pull Request** - Implement roadmap items
+3. **Join Discussions** - Share ideas and feedback
+4. **Write Documentation** - Improve guides and tutorials
+5. **Report Bugs** - Help us improve quality
 
-## Versioning Strategy
+---
 
-Algolang follows semantic versioning:
+## Versioning & Release Strategy
 
-- **Major** (X.0.0): Breaking changes to language or API
-- **Minor** (0.X.0): New features, backward compatible
-- **Patch** (0.0.X): Bug fixes only
+**Semantic Versioning**: `MAJOR.MINOR.PATCH`
+- **MAJOR**: Breaking changes to language or API
+- **MINOR**: New features, backward compatible
+- **PATCH**: Bug fixes only
 
-## Release Cycle
+**Release Cycle**:
+- **Minor Releases**: Every 3-4 months
+- **Patch Releases**: As needed for critical bugs
+- **Major Releases**: When significant breaking changes accumulate
 
-- Minor releases: Every 3-4 months
-- Patch releases: As needed
-- Major releases: When significant breaking changes accumulate
+**Backward Compatibility**:
+- Code written for 0.x will work on all 0.x versions (best effort)
+- Starting from 1.0: strict backward compatibility within major versions
+- Security fixes may require breaking changes
 
-## Backwards Compatibility
-
-**Guarantee**: Code written for Algolang 0.x will run on all 0.x versions unless security fixes require breaking changes.
-
-Starting from 1.0, strict backward compatibility within major versions.
+---
 
 ## Current Status (v0.1.0)
 
-✅ **Completed**:
-- Lexer and tokenization
-- Recursive descent parser
-- AST representation
-- Bytecode compiler
-- Stack-based VM
+### ✅ Completed Features
+- Lexical analysis and tokenization
+- Recursive descent parser with Pratt parsing
+- Abstract Syntax Tree representation
+- Bytecode compiler with scope resolution
+- Stack-based virtual machine
 - Local and global variables
-- Functions and recursion
-- Control flow (if/while)
-- Arithmetic and comparison operators
-- Basic standard library (math functions)
-- REPL
-- File execution
-- Error reporting
+- Functions with recursion support
+- Control flow (if/else, while loops)
+- Arithmetic, comparison, and logical operators
+- Standard library (math functions)
+- REPL with interactive mode
+- File execution from command line
+- Basic error reporting
 
-🚧 **In Progress**:
-- Improved error messages
-- Performance benchmarking
-- Documentation
+### 🚧 Known Limitations
+- No arrays or strings
+- No garbage collection (memory leaks possible)
+- Limited error messages
+- No debugger or profiler
+- Single-file programs only
 
-📋 **Next Up** (v0.2.0):
-- Arrays and strings
-- Enhanced standard library
-- Developer tooling
+### 📋 Next Milestone (v0.2.0)
+Priority items for the next release:
+1. Array and string types
+2. Enhanced standard library
+3. Better error messages with line numbers
+4. For loops and break/continue
+5. Bytecode disassembler tool
 
-## Feedback
+---
 
-Have suggestions for the roadmap? Open an issue or discussion on the project repository.
-
-**Note**: This roadmap is aspirational and represents the vision for Algolang. Actual development priorities may shift based on community needs and contributor availability.
+**Last Updated**: December 2025  
+**Maintained By**: Algolang Core Team  
+**License**: MIT
