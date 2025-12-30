@@ -41,7 +41,8 @@ typedef struct {
 typedef enum {
     OBJ_STRING,
     OBJ_FUNCTION,
-    OBJ_NATIVE
+    OBJ_NATIVE,
+    OBJ_ARRAY
 } ObjType;
 
 struct Obj {
@@ -80,14 +81,25 @@ struct ObjNative {
     NativeFn function;
 };
 
+struct ObjArray {
+    Obj obj;
+    Value* elements;
+    size_t count;
+    size_t capacity;
+};
+
+typedef struct ObjArray ObjArray;
+
 #define IS_STRING(value)   is_obj_type(value, OBJ_STRING)
 #define IS_FUNCTION(value) is_obj_type(value, OBJ_FUNCTION)
 #define IS_NATIVE(value)   is_obj_type(value, OBJ_NATIVE)
+#define IS_ARRAY(value)    is_obj_type(value, OBJ_ARRAY)
 
 #define AS_STRING(value)   ((ObjString*)AS_OBJ(value))
 #define AS_CSTRING(value)  (((ObjString*)AS_OBJ(value))->chars)
 #define AS_FUNCTION(value) ((ObjFunction*)AS_OBJ(value))
 #define AS_NATIVE(value)   (((ObjNative*)AS_OBJ(value))->function)
+#define AS_ARRAY(value)    ((ObjArray*)AS_OBJ(value))
 
 static inline bool is_obj_type(Value value, ObjType type) {
     return IS_OBJ(value) && AS_OBJ(value)->type == type;
@@ -102,6 +114,8 @@ ObjString* copy_string(const char* chars, size_t length);
 ObjString* take_string(char* chars, size_t length);
 ObjFunction* new_function();
 ObjNative* new_native(NativeFn function);
+ObjArray* new_array();
+void array_write(ObjArray* array, Value value);
 
 void print_value(Value value);
 bool values_equal(Value a, Value b);
