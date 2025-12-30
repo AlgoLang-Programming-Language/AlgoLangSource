@@ -68,42 +68,16 @@ static void run_file(const char* path) {
     if (result == INTERPRET_RUNTIME_ERROR) exit(70);
 }
 
+extern void global_set(ObjString* key, Value value);
+
 void define_native(const char* name, NativeFn function) {
-    push(OBJ_VAL(copy_string(name, strlen(name))));
-    push(OBJ_VAL(new_native(function)));
+    ObjString* name_str = copy_string(name, strlen(name));
+    ObjNative* native = new_native(function);
     
-    ObjString* name_str = AS_STRING(vm.stack[0]);
-    Value func_val = vm.stack[1];
+    push(OBJ_VAL(name_str));
+    push(OBJ_VAL(native));
     
-    extern VM vm;
-    
-    if (vm.globals.count + 1 > vm.globals.capacity * 0.75) {
-        int new_capacity = vm.globals.capacity < 8 ? 8 : vm.globals.capacity * 2;
-        ObjString** new_entries = calloc(new_capacity, sizeof(ObjString*));
-        
-        for (int i = 0; i < vm.globals.capacity; i++) {
-            if (vm.globals.entries[i] != NULL) {
-                ObjString* entry = vm.globals.entries[i];
-                uint32_t index = entry->hash % new_capacity;
-                while (new_entries[index] != NULL) {
-                    index = (index + 1) % new_capacity;
-                }
-                new_entries[index] = entry;
-            }
-        }
-        
-        free(vm.globals.entries);
-        vm.globals.entries = new_entries;
-        vm.globals.capacity = new_capacity;
-    }
-    
-    uint32_t index = name_str->hash % vm.globals.capacity;
-    while (vm.globals.entries[index] != NULL && vm.globals.entries[index] != name_str) {
-        index = (index + 1) % vm.globals.capacity;
-    }
-    
-    if (vm.globals.entries[index] == NULL) vm.globals.count++;
-    vm.globals.entries[index] = name_str;
+    global_set(name_str, OBJ_VAL(native));
     
     pop();
     pop();
@@ -126,4 +100,4 @@ int main(int argc, const char* argv[]) {
     free_objects();
     
     return 0;
-}  
+}
