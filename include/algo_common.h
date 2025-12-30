@@ -5,7 +5,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-#define ALGO_VERSION "0.1.0"
+#define ALGO_VERSION "0.2.0"
 
 typedef enum {
     ALGO_OK = 0,
