@@ -1,0 +1,43 @@
+# Fibonacci sequence calculator
+
+fn fib(n) {
+  if n <= 1 {
+    return n
+  }
+  return fib(n - 1) + fib(n - 2)
+}
+
+print fib(0)
+print fib(1)
+print fib(2)
+print fib(3)
+print fib(4)
+print fib(5)
+print fib(6)
+print fib(7)
+print fib(8)
+print fib(9)
+print fib(10)
+
+# Iterative version
+fn fib_iter(n) {
+  if n <= 1 {
+    return n
+  }
+  
+  let a = 0
+  let b = 1
+  let i = 2
+  
+  while i <= n {
+    let temp = a + b
+    a = b
+    b = temp
+    i = i + 1
+  }
+  
+  return b
+}
+
+print fib_iter(15)
+print fib_iter(20)
