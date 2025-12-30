@@ -21,12 +21,6 @@ typedef struct {
     Value* stack_top;
     
     Obj* objects;
-    
-    struct {
-        ObjString** entries;
-        int count;
-        int capacity;
-    } globals;
 } VM;
 
 typedef enum {
