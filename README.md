@@ -1,41 +1,92 @@
-# Algolang
 
-**A math-first, algorithm-focused programming language designed for clarity and deterministic execution.**
+---
 
-Algolang is a statically-scoped, bytecode-compiled language built for learning algorithms, computer science education, and mathematical reasoning. It prioritizes readability, correctness, and algorithmic clarity.
+<div align="center">
 
-## Features
+<!-- LOGO / TITLE -->
 
-- **Clean Syntax**: Minimal, intuitive syntax focused on algorithm expression
-- **Bytecode Compilation**: Source code is compiled to efficient bytecode
-- **Stack-based VM**: Fast execution on a custom virtual machine
-- **First-class Functions**: Functions are values that can be passed around
-- **Lexical Scoping**: Variables follow block scope rules
-- **Standard Library**: Built-in mathematical functions (abs, min, max, sqrt, pow, floor, ceil)
+<h1>Algolang</h1>
 
-## Quick Start
+<p>
+<b>a math-first, algorithm-centric programming language</b><br>
+clarity • determinism • education
+</p>
 
-### Building from Source
+<!-- BADGES (DARK THEME OPTIMIZED) -->
 
-```bash
-make
-```
+<p>
+  <img src="https://img.shields.io/badge/status-experimental-0a0e14?style=for-the-badge&logo=beaker&logoColor=white">
+  <img src="https://img.shields.io/badge/version-0.1.0-0a0e14?style=for-the-badge&logo=semantic-release&logoColor=white">
+  <img src="https://img.shields.io/badge/language-C-0a0e14?style=for-the-badge&logo=c&logoColor=white">
+</p>
 
-This produces the `algolang` executable.
+<p>
+  <img src="https://img.shields.io/badge/compiler-bytecode-111827?style=for-the-badge">
+  <img src="https://img.shields.io/badge/vm-stack--based-111827?style=for-the-badge">
+  <img src="https://img.shields.io/badge/scoping-lexical-111827?style=for-the-badge">
+</p>
 
-### Running Programs
+<p>
+  <img src="https://img.shields.io/badge/license-MIT-020617?style=for-the-badge&logo=open-source-initiative&logoColor=white">
+  <img src="https://img.shields.io/badge/platform-linux%20%7C%20macOS-020617?style=for-the-badge&logo=linux&logoColor=white">
+</p>
 
-Execute a file:
-```bash
-./algolang examples/fib.algo
-```
+</div>
 
-Start the REPL:
-```bash
-./algolang
-```
+---
 
-### Example Program
+## ✦ Overview
+
+**Algolang** is a statically scoped, bytecode-compiled programming language designed for **learning algorithms, computer science fundamentals, and mathematical reasoning**.
+
+It strips programming down to what matters:
+
+* expressing algorithms clearly
+* understanding how languages work internally
+* predictable, deterministic execution
+
+Algolang is not designed to replace production languages —
+it is designed to **teach how they work**.
+
+---
+
+## ✦ Why Algolang?
+
+Most languages optimize for convenience.
+Algolang optimizes for **understanding**.
+
+| Principle   | Description                                     |
+| ----------- | ----------------------------------------------- |
+| Clarity     | Code should read like the algorithm itself      |
+| Determinism | No hidden behavior, no undefined magic          |
+| Minimalism  | Small core, high expressiveness                 |
+| Education   | Designed to be read, traced, and reasoned about |
+
+---
+
+## ✦ Features
+
+* **Clean, Minimal Syntax**
+  Focused on algorithmic expression without boilerplate
+
+* **Bytecode Compilation**
+  Source code compiles to compact, predictable bytecode
+
+* **Custom Stack-Based Virtual Machine**
+  Simple execution model, easy to inspect and extend
+
+* **Lexical (Static) Scoping**
+  Clear block-based variable rules
+
+* **First-Class Functions**
+  Functions are values that can be passed and returned
+
+* **Built-in Math-Focused Standard Library**
+  Designed for numerical reasoning and algorithms
+
+---
+
+## ✦ Example
 
 ```algo
 fn fib(n) {
@@ -48,7 +99,35 @@ fn fib(n) {
 print fib(10)
 ```
 
-## Language Overview
+Readable. Deterministic. Algorithm-first.
+
+---
+
+## ✦ Quick Start
+
+### Build from Source
+
+```bash
+make
+```
+
+Produces the `algolang` executable.
+
+### Run a Program
+
+```bash
+./algolang examples/fib.algo
+```
+
+### Start the REPL
+
+```bash
+./algolang
+```
+
+---
+
+## ✦ Language Basics
 
 ### Variables
 
@@ -65,8 +144,7 @@ fn add(a, b) {
   return a + b
 }
 
-let result = add(5, 3)
-print result
+print add(5, 3)
 ```
 
 ### Control Flow
@@ -83,117 +161,158 @@ while x < 100 {
 }
 ```
 
-### Operators
+---
 
-- Arithmetic: `+`, `-`, `*`, `/`, `%`
-- Comparison: `==`, `!=`, `<`, `<=`, `>`, `>=`
-- Logical: `and`, `or`, `!`
-- Assignment: `=`
+## ✦ Data Types
 
-### Data Types
+* **Number** — 64-bit floating point
+* **Boolean** — `true`, `false`
+* **Nil** — `nil` (absence of value)
 
-- **Numbers**: 64-bit floating point (e.g., `42`, `3.14`)
-- **Booleans**: `true`, `false`
-- **Nil**: `nil` (absence of value)
+---
 
-### Standard Library
+## ✦ Operators
 
-- `abs(x)` - Absolute value
-- `min(a, b)` - Minimum of two numbers
-- `max(a, b)` - Maximum of two numbers
-- `sqrt(x)` - Square root
-- `pow(x, y)` - x raised to the power y
-- `floor(x)` - Round down to integer
-- `ceil(x)` - Round up to integer
+* Arithmetic: `+` `-` `*` `/` `%`
+* Comparison: `==` `!=` `<` `<=` `>` `>=`
+* Logical: `and` `or` `!`
+* Assignment: `=`
 
-## Architecture
+---
 
-Algolang follows a classic compiler pipeline:
+## ✦ Standard Library
+
+Mathematical primitives built into the runtime:
+
+* `abs(x)`
+* `min(a, b)`
+* `max(a, b)`
+* `sqrt(x)`
+* `pow(x, y)`
+* `floor(x)`
+* `ceil(x)`
+
+---
+
+## ✦ Architecture
 
 ```
-Source Code → Lexer → Parser → AST → Compiler → Bytecode → VM
+Source Code
+   ↓
+Lexer
+   ↓
+Parser
+   ↓
+AST
+   ↓
+Compiler
+   ↓
+Bytecode
+   ↓
+Virtual Machine
 ```
 
-### Components
+### Core Components
 
-1. **Lexer** (`src/lexer/`): Tokenizes source code
-2. **Parser** (`src/parser/`): Builds Abstract Syntax Tree using recursive descent
-3. **Compiler** (`src/bytecode/`): Generates bytecode from AST
-4. **Virtual Machine** (`src/vm/`): Executes bytecode on a stack-based VM
-5. **Runtime** (`src/runtime/`): Value representation and memory management
-6. **Standard Library** (`src/stdlib/`): Built-in native functions
+| Component | Description             |
+| --------- | ----------------------- |
+| Lexer     | Tokenizes source code   |
+| Parser    | Recursive descent → AST |
+| Compiler  | AST → bytecode          |
+| VM        | Stack-based execution   |
+| Runtime   | Values & memory         |
+| Stdlib    | Native math functions   |
 
-## Project Structure
+---
+
+## ✦ Project Structure
 
 ```
 algolang/
-├── include/          # Header files
-├── src/              # Source code
+├── include/          # Public headers
+├── src/
 │   ├── lexer/
 │   ├── parser/
 │   ├── bytecode/
 │   ├── vm/
 │   ├── runtime/
 │   └── stdlib/
-├── examples/         # Example programs
-├── docs/             # Documentation
-├── Makefile          # Build configuration
+├── examples/
+├── docs/
+├── Makefile
 └── README.md
 ```
 
-## Building and Testing
+---
+
+## ✦ Building & Testing
 
 ```bash
-# Build the compiler
-make
-
-# Run tests
-make test
-
-# Clean build artifacts
-make clean
-
-# Install system-wide (requires sudo)
+make          # build
+make test     # run tests
+make clean    # clean artifacts
 sudo make install
 ```
 
-## Requirements
+---
 
-- C compiler (GCC or Clang)
-- Standard C library
-- Math library (libm)
+## ✦ Documentation
 
-## Documentation
+* `docs/syntax.md` — full language reference
+* `docs/bytecode.md` — VM instruction set
+* `docs/roadmap.md` — future plans
 
-- [Syntax Guide](docs/syntax.md) - Complete language reference
-- [Bytecode Specification](docs/bytecode.md) - VM instruction set
-- [Roadmap](docs/roadmap.md) - Future development plans
+---
 
-## Examples
+## ✦ Philosophy
 
-See the `examples/` directory for sample programs:
+Algolang follows four non-negotiable rules:
 
-- `hello.algo` - Basic syntax demonstration
-- `fib.algo` - Fibonacci sequence (recursive and iterative)
-- `gcd.algo` - Greatest Common Divisor algorithm
+1. **Clarity over cleverness**
+2. **Correctness over performance**
+3. **Simplicity over features**
+4. **Education above all**
 
-## Philosophy
+If a feature makes the language harder to understand, it does not belong.
 
-Algolang is designed with these principles:
+---
 
-1. **Clarity over Cleverness**: Code should be self-documenting
-2. **Correctness over Performance**: Deterministic, predictable behavior
-3. **Simplicity over Features**: Minimal core, maximum expressiveness
-4. **Education First**: Ideal for learning algorithms and language implementation
+## ✦ Roadmap
 
-## License
+Planned improvements:
 
-MIT License - See LICENSE file for details
+* arrays & simple collections
+* richer standard library
+* better error diagnostics
+* debugging & tracing tools
+* optional compile-time optimizations
 
-## Contributing
+---
 
-Contributions are welcome! This is an educational project focused on language design and implementation.
+## ✦ Contributing
 
-## Version
+Contributions are welcome.
 
-Current version: 0.1.0
+This project values:
+
+* readable code
+* clear commit messages
+* well-explained design decisions
+
+Educational clarity matters more than raw feature count.
+
+---
+
+## ✦ License
+
+MIT License
+See `LICENSE` for details.
+
+---
+
+<div align="center">
+
+**Algolang v0.1.0** <i>a language built to be understood</i>
+
+</div>
+
