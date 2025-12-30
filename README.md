@@ -9,25 +9,7 @@
 
 ### Badges (all dark-themed, high contrast)
 
-<p>
-<img src="https://img.shields.io/github/workflow/status/AlgoLang-Programming-Language/AlgoLangSource/Build?style=for-the-badge&logo=github&logoColor=white&color=0a0e14&label=build">
-<img src="https://img.shields.io/github/v/release/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=semantic-release&logoColor=white&color=0a0e14&label=version">
-<img src="https://img.shields.io/github/license/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=open-source-initiative&logoColor=white&color=020617">
-<img src="https://img.shields.io/github/languages/top/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=c&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/contributors/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/issues/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/issues-pr/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/repo-size/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/last-commit/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/issues-closed-raw/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/downloads/AlgoLang-Programming-Language/AlgoLangSource/total?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/stars/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/forks/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/issues-pr-closed/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-<img src="https://img.shields.io/github/issues-closed/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14">
-</p>
-
-</div>
+<p> <img src="https://img.shields.io/github/actions/workflow/status/AlgoLang-Programming-Language/AlgoLangSource/build.yml?style=for-the-badge&logo=github&logoColor=white&color=0a0e14&label=build"> <img src="https://img.shields.io/github/v/release/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=semantic-release&logoColor=white&color=0a0e14&label=version"> <img src="https://img.shields.io/github/license/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=open-source-initiative&logoColor=white&color=020617"> <img src="https://img.shields.io/github/languages/top/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=c&logoColor=white&color=0a0e14"> <img src="https://img.shields.io/github/contributors/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14"> <img src="https://img.shields.io/github/issues/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14&label=issues"> <img src="https://img.shields.io/github/issues-closed-raw/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14&label=closed%20issues"> <img src="https://img.shields.io/github/issues-pr/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14&label=PRs"> <img src="https://img.shields.io/github/issues-pr-closed/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14&label=PRs%20closed"> <img src="https://img.shields.io/github/stars/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14"> <img src="https://img.shields.io/github/forks/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14"> <img src="https://img.shields.io/github/downloads/AlgoLang-Programming-Language/AlgoLangSource/total?style=for-the-badge&logo=github&logoColor=white&color=0a0e14"> <img src="https://img.shields.io/github/repo-size/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14"> <img src="https://img.shields.io/github/last-commit/AlgoLang-Programming-Language/AlgoLangSource?style=for-the-badge&logo=github&logoColor=white&color=0a0e14"> </p> </div>
 
 ---
 
