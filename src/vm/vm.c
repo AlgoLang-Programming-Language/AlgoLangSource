@@ -36,20 +36,13 @@ static void runtime_error(const char* format, ...) {
     reset_stack();
 }
 
-static void init_globals() {
-    vm.globals.entries = NULL;
-    vm.globals.count = 0;
-    vm.globals.capacity = 0;
-}
-
 void init_vm() {
     reset_stack();
     vm.objects = NULL;
-    init_globals();
 }
 
 void free_vm() {
-    free(vm.globals.entries);
+    free_globals();
 }
 
 void push(Value value) {
@@ -108,83 +101,10 @@ static bool call_value(Value callee, int arg_count) {
     return false;
 }
 
-static uint32_t hash_string_raw(const char* key, size_t length) {
-    uint32_t hash = 2166136261u;
-    for (size_t i = 0; i < length; i++) {
-        hash ^= (uint8_t)key[i];
-        hash *= 16777619;
-    }
-    return hash;
-}
-
-static ObjString* table_find_string(ObjString** entries, int capacity, const char* chars, size_t length, uint32_t hash) {
-    if (capacity == 0) return NULL;
-    
-    uint32_t index = hash % capacity;
-    
-    while (true) {
-        ObjString* entry = entries[index];
-        
-        if (entry == NULL) {
-            return NULL;
-        }
-        
-        if (entry->length == length && entry->hash == hash &&
-            memcmp(entry->chars, chars, length) == 0) {
-            return entry;
-        }
-        
-        index = (index + 1) % capacity;
-    }
-}
-
-static bool table_get(ObjString** entries, int capacity, ObjString* key, Value* value) {
-    if (capacity == 0) return false;
-    
-    uint32_t index = key->hash % capacity;
-    
-    while (true) {
-        ObjString* entry = entries[index];
-        if (entry == NULL) return false;
-        
-        if (entry == key) {
-            return false;
-        }
-        
-        index = (index + 1) % capacity;
-    }
-}
-
-static void table_set(ObjString*** entries, int* count, int* capacity, ObjString* key, Value value) {
-    if (*count + 1 > *capacity * 0.75) {
-        int new_capacity = *capacity < 8 ? 8 : *capacity * 2;
-        ObjString** new_entries = calloc(new_capacity, sizeof(ObjString*));
-        
-        for (int i = 0; i < *capacity; i++) {
-            if ((*entries)[i] != NULL) {
-                ObjString* entry = (*entries)[i];
-                uint32_t index = entry->hash % new_capacity;
-                while (new_entries[index] != NULL) {
-                    index = (index + 1) % new_capacity;
-                }
-                new_entries[index] = entry;
-            }
-        }
-        
-        free(*entries);
-        *entries = new_entries;
-        *capacity = new_capacity;
-    }
-    
-    uint32_t index = key->hash % *capacity;
-    while ((*entries)[index] != NULL && (*entries)[index] != key) {
-        index = (index + 1) % *capacity;
-    }
-    
-    bool is_new = (*entries)[index] == NULL;
-    if (is_new) (*count)++;
-    (*entries)[index] = key;
-}
+extern bool global_get(ObjString* key, Value* value);
+extern void global_set(ObjString* key, Value value);
+extern bool global_delete(ObjString* key);
+extern void free_globals();
 
 static InterpretResult run() {
     CallFrame* frame = &vm.frames[vm.frame_count - 1];
@@ -239,7 +159,7 @@ static InterpretResult run() {
             case OP_GET_GLOBAL: {
                 ObjString* name = READ_STRING();
                 Value value;
-                if (!table_get(vm.globals.entries, vm.globals.capacity, name, &value)) {
+                if (!global_get(name, &value)) {
                     runtime_error("Undefined variable '%s'", name->chars);
                     return INTERPRET_RUNTIME_ERROR;
                 }
@@ -248,18 +168,18 @@ static InterpretResult run() {
             }
             case OP_DEFINE_GLOBAL: {
                 ObjString* name = READ_STRING();
-                table_set(&vm.globals.entries, &vm.globals.count, &vm.globals.capacity, name, peek(0));
+                global_set(name, peek(0));
                 pop();
                 break;
             }
             case OP_SET_GLOBAL: {
                 ObjString* name = READ_STRING();
                 Value value;
-                if (!table_get(vm.globals.entries, vm.globals.capacity, name, &value)) {
+                if (!global_get(name, &value)) {
                     runtime_error("Undefined variable '%s'", name->chars);
                     return INTERPRET_RUNTIME_ERROR;
                 }
-                table_set(&vm.globals.entries, &vm.globals.count, &vm.globals.capacity, name, peek(0));
+                global_set(name, peek(0));
                 break;
             }
             case OP_EQUAL: {
